@@ -15,6 +15,10 @@ class Board
     Array.new(@rows, Array.new(@columns, "."))
   end
 
+  def print_board
+    puts format_board
+  end
+
   def format_board
     @grid.unshift(@header)
     formatted_board = @grid.map { |row| row.join }
