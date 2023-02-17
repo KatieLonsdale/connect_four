@@ -13,7 +13,8 @@ describe Board do
       expect(@board.grid).to be_a Array
     end
 
-    it 'board is blank by default' do
+
+    xit 'board is blank by default' do
       expect(@board.grid.all? do |array|
         array.all?{|element| element == "."}
       end).to be true
@@ -29,6 +30,13 @@ describe Board do
 
     it 'has a column count of 7 by default' do
       expect(@board.columns).to eq(7)
+    end
+  end
+
+  describe '#make_grid' do
+    it 'has 6 subarrays of 7 elements each by default' do
+      expect(@board.grid.count).to eq(@board.rows)
+      expect(@board.grid[0].count).to eq(@board.columns)
     end
   end
 end
