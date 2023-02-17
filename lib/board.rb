@@ -4,7 +4,7 @@ class Board
               :columns,
               :grid
 
-  def initialize()
+  def initialize
     @header = ["A", "B", "C", "D", "E", "F", "G"]
     @rows = 6
     @columns = 7
@@ -15,4 +15,10 @@ class Board
     Array.new(@rows, Array.new(@columns, "."))
   end
 
+  def format_board
+    @grid.unshift(@header)
+    formatted_board = @grid.map { |row| row.join }
+    @grid.shift
+    formatted_board
+  end
 end
