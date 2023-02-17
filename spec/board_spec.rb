@@ -14,7 +14,7 @@ describe Board do
     end
 
 
-    xit 'board is blank by default' do
+    it 'board is blank by default' do
       expect(@board.grid.all? do |array|
         array.all?{|element| element == "."}
       end).to be true
@@ -37,6 +37,15 @@ describe Board do
     it 'has 6 subarrays of 7 elements each by default' do
       expect(@board.grid.count).to eq(@board.rows)
       expect(@board.grid[0].count).to eq(@board.columns)
+    end
+  end
+
+  describe '#format_board' do
+    it 'can format subarrays to strings' do
+      expect(@board.format_board).to be_a Array
+      expect(@board.format_board.count).to eq(@rows)
+      expect(@board.format_board.sample).to be_a String
+      expect(@board.format_board.sample.length).to eq(@columns)
     end
   end
 end
