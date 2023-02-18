@@ -36,11 +36,11 @@ describe Board do
   end
 
   describe '#format_board' do
-    xit 'can format subarrays to strings' do
+    it 'can format subarrays to strings' do
       expect(@board.format_board).to be_a Array
       expect(@board.format_board.count).to eq(@board.rows + 1)
       expect(@board.format_board.sample[0]).to be_a String
-      expect(@board.format_board[0]).to eq(@board.header.join)
+      expect(@board.format_board[0]).to eq(@grid.keys.join)
       expect(@board.format_board.sample.length).to eq(@board.columns)
     end
   end
