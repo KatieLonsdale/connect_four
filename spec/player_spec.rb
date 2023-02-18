@@ -16,8 +16,8 @@ describe Player do
     end
 
     it 'has a piece' do
-      expect(@player.piece).to be true
-      expect(@player_2.piece).to be true
+      expect(@player.piece).to eq('X')
+      expect(@player_2.piece).to eq('O')
     end
   end
 
@@ -27,4 +27,18 @@ describe Player do
       expect(@player_2.assign_piece).to eq('O')
     end
   end
+
+  describe '#is_computer?' do
+    it 'returns true if player is computer' do
+      expect(@player.is_computer?).to be false
+      expect(@player_2.is_computer?).to be true
+    end
+  end
+
+  describe '#is_human?' do
+    it 'returns true if player is human' do
+      expect(@player.is_human?).to be true
+      expect(@player_2.is_human?).to be false
+    end
+  end  
 end
