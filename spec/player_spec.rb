@@ -16,8 +16,15 @@ describe Player do
     end
 
     it 'has a piece' do
-      expect(@player.piece).to eq('X')
-      expect(@player_2.piece).to eq('O')
+      expect(@player.piece).to be true
+      expect(@player_2.piece).to be true
+    end
+  end
+
+  describe '#assign_piece' do
+    it 'assigns the correct piece based on type' do
+      expect(@player.assign_piece).to eq('X')
+      expect(@player_2.assign_piece).to eq('O')
     end
   end
 end
