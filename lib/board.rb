@@ -5,14 +5,18 @@ class Board
               :grid
 
   def initialize
-    @header = ["A", "B", "C", "D", "E", "F", "G"]
     @rows = 6
     @columns = 7
     @grid = make_grid
   end
 
   def make_grid
-    Array.new(@rows, Array.new(@columns, "."))
+    header = ["A", "B", "C", "D", "E", "F", "G"]
+    grid = Hash.new {|grid, letter| grid[letter] = [".", ".", ".", ".", ".", "."]}
+    header.map do |letter|
+      grid[letter]
+    end
+    grid
   end
 
   def print_board
