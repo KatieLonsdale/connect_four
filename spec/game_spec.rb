@@ -48,12 +48,12 @@ describe Game do
     end
 
     it 'returns true if the column has open space available' do
-      expect(open_column?('B')).to be true
-      expect(open_column?('C')).to be true
+      expect(@game.open_column?('B')).to be true
+      expect(@game.open_column?('C')).to be true
     end
 
     it 'returns false if the column is full' do
-      expect(open_column?('A')).to be false
+      expect(@game.open_column?('A')).to be false
     end
   end
 end
