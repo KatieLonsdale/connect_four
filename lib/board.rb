@@ -1,6 +1,5 @@
 class Board
-  attr_reader :header,
-              :rows,
+  attr_reader :rows,
               :columns,
               :grid
 
