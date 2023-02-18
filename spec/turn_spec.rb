@@ -20,9 +20,9 @@ describe Turn do
     end
 
     it 'has a computer selection' do
-      expect(@turn.player_selection).to eq('B')
-      expect(@turn_2.player_selection).to eq('E')
-      expect(@turn_3.player_selection).to eq('G')
+      expect(@turn.computer_selection).to eq('B')
+      expect(@turn_2.computer_selection).to eq('E')
+      expect(@turn_3.computer_selection).to eq('G')
     end
 
     # may potentially add current_board attribute if we need it
