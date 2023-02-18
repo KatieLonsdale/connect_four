@@ -19,10 +19,6 @@ describe Board do
       expect(@board.grid.values.sample).to eq([".", ".", ".", ".", ".", "."])
     end
 
-    # xit 'has a header' do
-    #   expect(@board.header).to eq(["A", "B", "C", "D", "E", "F", "G"])
-    # end
-
     xit 'has a row count of 6 by default' do
       expect(@board.rows).to eq(6)
     end
