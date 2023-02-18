@@ -29,13 +29,31 @@ describe Game do
   end
 
   describe '#get_computer_selection' do
-      before(:each) do
-        @computer_selection = @game.get_computer_selection
-      end
+    before(:each) do
+      @computer_selection = @game.get_computer_selection
+    end
+
     it 'returns a valid column selection' do
       expect(@computer_selection).to be_a String
       expect(@computer_selection.length).to eq(1)
       expect(@valid_columns).to include(@computer_selection)
+    end
+  end
+
+  describe '#open_column?' do
+    before(:each) do
+      @game.board.grid['A'] = ['X', 'O', 'X', 'O', 'X', 'O']
+      @game.board.grid['B'] = ['.', '.', '.', '.', 'X', 'O']
+      @game.board.grid['C'] = ['.', '.', '.', '.', '.', '.']
+    end
+
+    it 'returns true if the column has open space available' do
+      expect(open_column?('B')).to be true
+      expect(open_column?('C')).to be true
+    end
+
+    it 'returns false if the column is full' do
+      expect(open_column?('A')).to be false
     end
   end
 end
