@@ -40,6 +40,18 @@ describe Game do
     end
   end
 
+  describe '#get_human_selection' do
+    before(:each) do
+      @human_selection = @game.get_human_selection
+    end
+
+    it 'returns a valid column selection' do
+      expect(@human_selection).to be_a String
+      expect(@human_selection.length).to eq(1)
+      expect(@valid_columns).to include(@human_selection)
+    end
+  end
+
   describe '#open_column?' do
     before(:each) do
       @game.board.grid['A'] = ['X', 'O', 'X', 'O', 'X', 'O']
