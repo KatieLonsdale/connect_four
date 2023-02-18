@@ -5,7 +5,7 @@ describe Board do
     @board = Board.new
   end
   describe '#initialize' do
-    xit 'exists' do
+    it 'exists' do
       expect(@board).to be_a Board
     end
 
@@ -13,13 +13,10 @@ describe Board do
       expect(@board.grid).to be_a Hash
       expect(@board.grid.keys).to eq(["A", "B", "C", "D", "E", "F", "G"])
       expect(@board.grid.values.count).to eq(7)
-      expect(@board.grid.values.sample).to eq([".", ".", ".", ".", ".", "."])
     end
 
-    xit 'board is blank by default' do
-      expect(@board.grid.all? do |array|
-        array.all?{|element| element == "."}
-      end).to be true
+    it 'board is blank by default' do
+      expect(@board.grid.values.sample).to eq([".", ".", ".", ".", ".", "."])
     end
 
     # xit 'has a header' do
