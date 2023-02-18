@@ -19,19 +19,19 @@ describe Board do
       expect(@board.grid.values.sample).to eq([".", ".", ".", ".", ".", "."])
     end
 
-    xit 'has a row count of 6 by default' do
+    it 'has a row count of 6 by default' do
       expect(@board.rows).to eq(6)
     end
 
-    xit 'has a column count of 7 by default' do
+    it 'has a column count of 7 by default' do
       expect(@board.columns).to eq(7)
     end
   end
 
   describe '#make_grid' do
-    xit 'has 6 subarrays of 7 elements each by default' do
-      expect(@board.grid.count).to eq(@board.rows)
-      expect(@board.grid.sample.count).to eq(@board.columns)
+    it 'has 6 subarrays of 7 elements each by default' do
+      expect(@board.grid.values.sample.count).to eq(@board.rows)
+      expect(@board.grid.keys.count).to eq(@board.columns)
     end
   end
 
