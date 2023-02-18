@@ -24,9 +24,7 @@ class Board
   end
 
   def format_board
-    @grid.unshift(@header)
-    formatted_board = @grid.map { |row| row.join }
-    @grid.shift
-    formatted_board
+    formatted_board = @grid.values.transpose
+    formatted_board.unshift(@grid.keys).map {|row| row.join}
   end
 end
