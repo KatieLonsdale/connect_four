@@ -58,13 +58,15 @@ describe Game do
       $stdin = STDIN
     end
 
-    it 'displays error message if input is not a valid letter' do
+    #might need to remove this test once we are not early-returning the error
+    it 'displays error message if first selection is not a valid letter' do
       $stdin = invalid_input_1
       expect(@game.get_human_selection).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
       $stdin = STDIN
     end
 
-    it 'displays error message if selected column is full' do
+    #might need to remove this test once we are not early-returning the error
+    it 'displays error message if first selected column is full' do
       $stdin = invalid_input_2
       expect(@game.get_human_selection).to eq("Sorry, this column is full. Please try again.")
       $stdin = STDIN
