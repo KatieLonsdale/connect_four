@@ -1,7 +1,7 @@
 class Board
   attr_reader :rows,
-              :columns,
-              :grid
+              :columns
+  attr_accessor :grid
 
   def initialize
     @rows = 6
@@ -30,5 +30,18 @@ class Board
   def update_board(player_selection, computer_selection)
     @grid[player_selection][@grid[player_selection].rindex('.')] = 'X'
     @grid[computer_selection][@grid[computer_selection].rindex('.')] = 'O'
+  end
+
+  def check_for_end_game
+    values = grid.values
+    array = []
+    values.each do |subarray|
+      subarray.each_cons(4){|element| array << element}
+    end
+    if array.any?{|subarray| subarray.all?{|element| element == 'X'}}
+      :win
+    elsif array.any?{|subarray| subarray.all?{|element| element == 'O'}}
+      :loss
+    end
   end
 end
