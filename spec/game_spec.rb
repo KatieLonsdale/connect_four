@@ -1,9 +1,12 @@
-require 'spec_helper'
 require 'stringio'
+require 'spec_helper'
+
 
 describe Game do
   before(:each) do
-    @game = Game.new
+    @connect_four = ConnectFour.new
+    @connect_four.create_new_game
+    @game = @connect_four.game
     @valid_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
     @game.board.grid['A'] = ['X', 'O', 'X', 'O', 'X', 'O']
     @game.board.grid['B'] = ['.', '.', '.', '.', 'X', 'O']
@@ -50,8 +53,8 @@ describe Game do
 
   describe '#get_human_selection' do
       let(:valid_input) {StringIO.new('B')} #letter is valid, column is open
-      let(:invalid_input_1) {StringIO.new('X')} #letter is invalid
-      let(:invalid_input_2) {StringIO.new('A')} #letter is valid, column is full
+      # let(:invalid_input_1) {StringIO.new('X')} #letter is invalid
+      # let(:invalid_input_2) {StringIO.new('A')} #letter is valid, column is full
 
     it 'returns a valid column selection when input is valid' do
       $stdin = valid_input
@@ -63,18 +66,18 @@ describe Game do
     end
 
     #will need to remove (or modify) this test once we are not early-returning the error
-    it 'displays error message if first selection is not a valid letter' do
-      $stdin = invalid_input_1
-      expect(@game.get_human_selection).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
-      $stdin = STDIN
-    end
+    # it 'displays error message if first selection is not a valid letter' do
+    #   $stdin = invalid_input_1
+    #   expect(@game.get_human_selection).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
+    #   $stdin = STDIN
+    # end
 
     #will need to remove (or modify) this test once we are not early-returning the error
-    it 'displays error message if first selected column is full' do
-      $stdin = invalid_input_2
-      expect(@game.get_human_selection).to eq("Sorry, this column is full. Please try again.")
-      $stdin = STDIN
-    end
+    # it 'displays error message if first selected column is full' do
+    #   $stdin = invalid_input_2
+    #   expect(@game.get_human_selection).to eq("Sorry, this column is full. Please try again.")
+    #   $stdin = STDIN
+    # end
   end
 
   describe '#valid_letter?' do
