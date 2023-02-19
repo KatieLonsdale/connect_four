@@ -1,7 +1,8 @@
 class Game
   attr_reader :board,
               :human_player,
-              :computer_player
+              :computer_player,
+              :game_over
 
   @@valid_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
@@ -9,6 +10,7 @@ class Game
     @board = Board.new
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
+    @game_over = false
   end
 
   def get_computer_selection
