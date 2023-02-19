@@ -30,6 +30,10 @@ describe Game do
       expect(@game.computer_player.is_computer?).to be true
       expect(@game.computer_player.is_human?).to be false
     end
+
+    it 'has a game over attribute that is false by default' do
+      expect(@game.game_over).to be false
+    end
   end
 
   describe '#get_computer_selection' do
