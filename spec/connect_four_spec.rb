@@ -34,4 +34,10 @@ describe ConnectFour do
       expect(@connect_four.create_players).to be_a Player
     end
   end
+
+  describe '#create_board' do
+    it 'creates a board' do
+      expect(@connect_four.create_board).to be_a Board
+    end
+  end
 end
