@@ -17,4 +17,8 @@ class ConnectFour
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
   end
+
+  def create_board
+    @board = Board.new
+  end
 end
