@@ -44,7 +44,7 @@ describe Board do
       expect(@board.format_board.sample.length).to eq(@board.columns)
     end
   end
-  
+
   describe '#update_board' do
     it 'changes grid to reflect board after turn selections' do
       @board.update_board('A', 'B')
@@ -77,7 +77,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "O"]})
 
-      @turn_4.update_board('B', 'D')
+      @board.update_board('B', 'D')
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", "X", "O"],
