@@ -10,10 +10,6 @@ describe ConnectFour do
       expect(@connect_four).to be_a ConnectFour
     end
 
-    it 'has a board' do
-      expect(@connect_four.board).to be_a Board
-    end
-
     it 'has a human player' do
       expect(@connect_four.human_player).to be_a Player
       expect(@connect_four.human_player.type).to eq(:human)
@@ -22,6 +18,14 @@ describe ConnectFour do
     it 'has a computer player' do
       expect(@connect_four.computer_player).to be_a Player
       expect(@connect_four.computer_player.type).to eq(:computer)
+    end
+
+    it 'has a board that is nil by default' do
+      expect(@connect_four.board).to eq(nil)
+    end
+
+    it 'has a game that is nil by default' do
+      expect(@connect_four.game).to eq(nil)
     end
   end
 
