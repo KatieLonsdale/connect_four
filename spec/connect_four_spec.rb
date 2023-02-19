@@ -29,9 +29,9 @@ describe ConnectFour do
     end
   end
 
-  describe '#create_instances' do
-    it 'creates instances' do
-      expect(@connect_four.create_instances).to be_a Player
+  describe '#create_players' do
+    it 'creates players' do
+      expect(@connect_four.create_players).to be_a Player
     end
   end
 end

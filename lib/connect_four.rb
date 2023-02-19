@@ -10,10 +10,10 @@ class ConnectFour
     @board = nil
     @game = nil
 
-    create_instances
+    create_players
   end
 
-  def create_instances
+  def create_players
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
   end
