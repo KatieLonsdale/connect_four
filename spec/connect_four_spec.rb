@@ -35,9 +35,12 @@ describe ConnectFour do
     end
   end
 
-  describe '#create_board' do
-    it 'creates a board' do
-      expect(@connect_four.create_board).to be_a Board
+  describe '#create_new_game' do
+    it 'creates a new game and passes attributes' do
+      expect(@connect_four.create_new_game).to be_a Game
+      expect(@connect_four.game.board).to eq(@connect_four.board)
+      expect(@connect_four.game.human_player).to eq(@connect_four.human_player)
+      expect(@connect_four.game.computer_player).to eq(@connect_four.computer_player)
     end
   end
 end
