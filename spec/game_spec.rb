@@ -52,6 +52,20 @@ describe Game do
     end
   end
 
+  describe '#valid_letter?' do
+    it 'returns true if the letter matches a valid column' do
+      expect(@game.valid_letter?('A')).to be true
+      expect(@game.valid_letter?('G')).to be true
+    end
+
+    it 'returns false if the letter is not valid' do
+      expect(@game.valid_letter?('a')).to be false
+      expect(@game.valid_letter?(1)).to be false
+      expect(@game.valid_letter?('AG')).to be false
+      expect(@game.valid_letter?('Y')).to be false
+    end
+  end
+
   describe '#open_column?' do
     before(:each) do
       @game.board.grid['A'] = ['X', 'O', 'X', 'O', 'X', 'O']
