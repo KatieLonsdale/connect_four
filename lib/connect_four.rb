@@ -1,18 +1,19 @@
 class ConnectFour
-  attr_reader :board,
-              :human_player,
-              :computer_player
+  attr_reader :human_player,
+              :computer_player,
+              :board,
+              :game
 
   def initialize
-    @board = nil
     @human_player = nil
     @computer_player = nil
+    @board = nil
+    @game = nil
 
     create_instances
   end
 
   def create_instances
-    @board = Board.new
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
   end
