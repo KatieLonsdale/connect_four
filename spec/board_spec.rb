@@ -44,4 +44,51 @@ describe Board do
       expect(@board.format_board.sample.length).to eq(@board.columns)
     end
   end
+  
+  describe '#update_board' do
+    it 'changes grid to reflect board after turn selections' do
+      @board.update_board('A', 'B')
+
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "."],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "."],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "."]})
+
+      @board.update_board('C', 'E')
+
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "X"],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "."]})
+
+      @board.update_board('D', 'G')
+
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "X"],
+      "D"=>[".", ".", ".", ".", ".", "X"],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "O"]})
+
+      @turn_4.update_board('B', 'D')
+
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
+      "B"=>[".", ".", ".", ".", "X", "O"],
+      "C"=>[".", ".", ".", ".", ".", "X"],
+      "D"=>[".", ".", ".", ".", "O", "X"],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "O"]})
+
+      # overkill to check board each time?
+      # multiple tests to check each column and that column updates twice
+    end
+  end
 end
