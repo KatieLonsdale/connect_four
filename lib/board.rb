@@ -15,7 +15,7 @@ class Board
     header.map do |letter|
       grid[letter]
     end
-    grid
+    @grid = grid
   end
 
   def print_board
@@ -25,5 +25,10 @@ class Board
   def format_board
     formatted_board = @grid.values.transpose
     formatted_board.unshift(@grid.keys).map {|row| row.join}
+  end
+
+  def update_board(player_selection, computer_selection)
+    @grid[player_selection][@grid[player_selection].rindex('.')] = 'X'
+    @grid[computer_selection][@grid[computer_selection].rindex('.')] = 'O'
   end
 end
