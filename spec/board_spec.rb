@@ -183,4 +183,25 @@ describe Board do
       expect(@board.check_for_end_game).to eq(:keep_playing)
     end
   end
+
+  describe '#create_diagonals' do
+    it 'returns an array of all diagonals on the grid' do
+      @board.grid = ({"A"=>[".", ".", "O", ".", ".", "X"],
+      "B"=>[".", ".", ".", "O", "X", "."],
+      "C"=>[".", ".", ".", ".", "O", "X"],
+      "D"=>[".", ".", ".", ".", "X", "O"],
+      "E"=>[".", ".", ".", ".", ".", "."],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "."]})
+
+      expect(@board.create_diagonals).to be_a Array
+      expect(@board.create_diagonals.count).to eq(12)
+      expect(@board.create_diagonals.sample).to be_a Array
+      expect(@board.create_diagonals.flatten).to include(@board.grid.values[0][0])
+      expect(@board.create_diagonals.flatten).to include(@board.grid.values[0][5])
+      expect(@board.create_diagonals.flatten).to include(@board.grid.values[6][0])
+      expect(@board.create_diagonals.flatten).to include(@board.grid.values[6][5])
+      expect(@board.create_diagonals[0]).to eq(["O","O","O","O"])
+    end
+  end
 end
