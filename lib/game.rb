@@ -1,8 +1,9 @@
 class Game
+  attr_accessor :game_over
+
   attr_reader :board,
               :human_player,
-              :computer_player,
-              :game_over
+              :computer_player
 
   @@valid_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
