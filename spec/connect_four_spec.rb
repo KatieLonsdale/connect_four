@@ -43,4 +43,10 @@ describe ConnectFour do
       expect(@connect_four.game.computer_player).to eq(@connect_four.computer_player)
     end
   end
+
+  describe '#show_welcome_message' do
+    it 'shows a welcome message and main menu to the user' do
+      expect(@connect_four.show_welcome_message).to eq('Welcome to Connect Four!')
+    end
+  end
 end
