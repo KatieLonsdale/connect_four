@@ -36,6 +36,7 @@ class Board
     result = :keep_playing
     result = :win if check_for_win == true
     result = :loss if check_for_loss == true
+    result = :draw if check_for_draw == true
     result
   end
 
@@ -52,6 +53,12 @@ class Board
       values.each_cons(4) do |quad|
         return true if quad == ['O', 'O', 'O', 'O']
       end
+    end
+  end
+
+  def check_for_draw
+    grid.values.each do |values|
+      return true if values.none?{|element| element == '.'}
     end
   end
 end
