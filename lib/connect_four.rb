@@ -55,6 +55,32 @@ class ConnectFour
   def start
     puts show_welcome_message
     puts show_main_menu
+    play_or_quit
+  end
+
+  def play
+    create_new_game
+    puts @board.format_board
+
+    until @game.game_over == true
+      @board.update_board_human(@game.get_human_selection)
+      puts @board.format_board
+
+      puts turn_results(@board.check_for_end_game)
+      break if @game.game_over == true
+      puts "Computer - take your turn."
+      @board.update_board_computer(@game.get_computer_selection)
+      puts @board.format_board
+
+      puts turn_results(@board.check_for_end_game)
+    end
+
+    puts show_play_again_message
+    puts show_main_menu
+    play_or_quit
+  end
+
+  def play_or_quit
     selection = gets.chomp
 
     until selection == 'p' || selection == 'q'
