@@ -26,4 +26,8 @@ class ConnectFour
   def show_welcome_message
     'Welcome to Connect Four!'
   end
+
+  def show_main_menu
+    'Enter p to play or q to quit.'
+  end
 end
