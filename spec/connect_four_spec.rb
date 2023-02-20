@@ -55,4 +55,10 @@ describe ConnectFour do
       expect(@connect_four.show_main_menu).to eq('Enter p to play or q to quit.')
     end
   end
+
+  describe '#show_play_again_message' do
+    it 'shows a message to the user asking if they want to play again' do
+      expect(@connect_four.show_play_again_message).to eq('Thanks for playing! Want to play again?')
+    end
+  end
 end
