@@ -18,9 +18,9 @@ class Board
     @grid = grid
   end
 
-  def print_board
-    puts format_board
-  end
+  # def print_board
+  #   puts format_board
+  # end
 
   def format_board
     formatted_board = @grid.values.transpose
@@ -29,12 +29,10 @@ class Board
 
   def update_board_human(player_selection)
     @grid[player_selection][@grid[player_selection].rindex('.')] = 'X'
-    print_board
   end
 
   def update_board_computer(player_selection)
     @grid[player_selection][@grid[player_selection].rindex('.')] = 'O'
-    print_board
   end
 
   def check_for_end_game
