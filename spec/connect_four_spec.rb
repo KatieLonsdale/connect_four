@@ -61,4 +61,27 @@ describe ConnectFour do
       expect(@connect_four.show_play_again_message).to eq('Thanks for playing! Want to play again?')
     end
   end
+
+  describe '#turn_results' do
+    it 'shows a winning message and ends the game if the human player wins' do
+      expect(@connect_four.turn_results(:win)).to eq('You win!')
+      expect(@connect_four.game.game_over).to be true
+    end
+
+    it 'shows a losing message and ends the game if the human player loses' do
+      expect(@connect_four.turn_results(:loss)).to eq('You lose!')
+      expect(@connect_four.game.game_over).to be true
+    end
+
+    it 'shows a draw message and ends the game if game is a draw' do
+      expect(@connect_four.turn_results(:draw)).to eq('Game is a draw!')
+      expect(@connect_four.game.game_over).to be true
+    end
+
+    it 'does nothing if no end condition is met' do
+      @connect_four.turn_results(:keep_playing)
+
+      expect(@connect_four.game.game_over).to be false
+    end
+  end
 end
