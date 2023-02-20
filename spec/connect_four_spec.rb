@@ -45,8 +45,14 @@ describe ConnectFour do
   end
 
   describe '#show_welcome_message' do
-    it 'shows a welcome message and main menu to the user' do
+    it 'shows a welcome message to the user' do
       expect(@connect_four.show_welcome_message).to eq('Welcome to Connect Four!')
+    end
+  end
+
+  describe '#show_main_menu' do
+    it 'shows a main menu to the user' do
+      expect(@connect_four.show_main_menu).to eq('Enter p to play or q to quit.')
     end
   end
 end
