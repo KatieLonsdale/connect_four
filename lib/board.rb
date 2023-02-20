@@ -33,15 +33,25 @@ class Board
   end
 
   def check_for_end_game
-    values = grid.values
-    array = []
-    values.each do |subarray|
-      subarray.each_cons(4){|element| array << element}
+    result = :keep_playing
+    result = :win if check_for_win == true
+    result = :loss if check_for_loss == true
+    result
+  end
+
+  def check_for_win
+    grid.values.each do |values|
+      values.each_cons(4) do |quad|
+        return true if quad == ['X', 'X', 'X', 'X']
+      end
     end
-    if array.any?{|subarray| subarray.all?{|element| element == 'X'}}
-      :win
-    elsif array.any?{|subarray| subarray.all?{|element| element == 'O'}}
-      :loss
+  end
+
+  def check_for_loss
+    grid.values.each do |values|
+      values.each_cons(4) do |quad|
+        return true if quad == ['O', 'O', 'O', 'O']
+      end
     end
   end
 end
