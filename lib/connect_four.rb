@@ -34,4 +34,17 @@ class ConnectFour
   def show_play_again_message
     'Thanks for playing! Want to play again?'
   end
+
+  def turn_results(result)
+    if result == :win
+      @game.game_over = true
+      'You win!'
+    elsif result == :loss
+      @game.game_over = true
+      'You lose!'
+    elsif result == :draw
+      @game.game_over = true
+      'Game is a draw!'
+    end
+  end
 end
