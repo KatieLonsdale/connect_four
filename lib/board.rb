@@ -33,25 +33,31 @@ class Board
   end
 
   def check_for_end_game
+    vertical = @grid.values
+    horizontal = @grid.values.transpose
     result = :keep_playing
-    result = :win if check_for_win == true
-    result = :loss if check_for_loss == true
+    result = :win if check_for_win(vertical, horizontal) == true
+    result = :loss if check_for_loss(vertical, horizontal) == true
     result = :draw if check_for_draw == true
     result
   end
 
-  def check_for_win
-    grid.values.each do |values|
-      values.each_cons(4) do |quad|
-        return true if quad == ['X', 'X', 'X', 'X']
+  def check_for_win(vertical, horizontal)
+    [vertical, horizontal].each do |grid|
+      grid.each do |values|
+        values.each_cons(4) do |quad|
+          return true if quad == ['X', 'X', 'X', 'X']
+        end
       end
     end
   end
 
-  def check_for_loss
-    grid.values.each do |values|
-      values.each_cons(4) do |quad|
-        return true if quad == ['O', 'O', 'O', 'O']
+  def check_for_loss(vertical, horizontal)
+    [vertical, horizontal].each do |grid|
+      grid.each do |values|
+        values.each_cons(4) do |quad|
+          return true if quad == ['O', 'O', 'O', 'O']
+        end
       end
     end
   end
