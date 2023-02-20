@@ -273,9 +273,29 @@ describe Board do
     end
   end
 
-  # describe '#check_for_draw' do
+  describe '#check_for_draw' do
+    it 'checks for a full board with no win' do
+      @board.grid = {"A"=>["X", "O", "X", "X", "O", "X"],
+      "B"=>["O", "X", "O", "X", "X", "O"],
+      "C"=>["X", "X", "O", "X", "O", "X"],
+      "D"=>["O", "X", "O", "O", "X", "O"],
+      "E"=>["X", "O", "X", "O", "X", "X"],
+      "F"=>["O", "X", "X", "O", "X", "O"],
+      "G"=>["X", "O", "X", "X", "O", "X"]}
 
-  # end
+      expect(@board.check_for_draw).to be true
+
+      @board.grid = {"A"=>[".", "O", "X", "X", "O", "X"],
+      "B"=>[".", ".", "O", "X", "X", "O"],
+      "C"=>[".", ".", "O", "X", "O", "X"],
+      "D"=>[".", "X", "O", "O", "X", "O"],
+      "E"=>["X", "O", "X", "O", "X", "X"],
+      "F"=>["O", "X", "X", "O", "X", "O"],
+      "G"=>["X", "O", "X", "X", "O", "X"]}
+
+      expect(@board.check_for_draw).to be false
+    end
+  end
 
   describe '#create_diagonals' do
     it 'returns an array of all diagonals on the grid' do
