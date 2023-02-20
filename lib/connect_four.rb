@@ -32,7 +32,11 @@ class ConnectFour
   end
 
   def show_play_again_message
-    'Thanks for playing! Want to play again?'
+    'Want to play again?'
+  end
+
+  def show_goodbye_message
+    'Thanks for playing. Goodbye!'
   end
 
   def turn_results(result)
