@@ -63,6 +63,10 @@ describe ConnectFour do
   end
 
   describe '#turn_results' do
+    before(:each) do
+      @connect_four.create_new_game
+    end
+
     it 'shows a winning message and ends the game if the human player wins' do
       expect(@connect_four.turn_results(:win)).to eq('You win!')
       expect(@connect_four.game.game_over).to be true
