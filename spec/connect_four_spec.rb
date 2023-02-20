@@ -58,7 +58,13 @@ describe ConnectFour do
 
   describe '#show_play_again_message' do
     it 'shows a message to the user asking if they want to play again' do
-      expect(@connect_four.show_play_again_message).to eq('Thanks for playing! Want to play again?')
+      expect(@connect_four.show_play_again_message).to eq('Want to play again?')
+    end
+  end
+
+  describe '#show_goodbye_message' do
+    it 'shows a goodble message to the user' do
+      expect(@connect_four.show_goodbye_message).to eq('Thanks for playing. Goodbye!')
     end
   end
 
