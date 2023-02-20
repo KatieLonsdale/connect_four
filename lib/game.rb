@@ -1,8 +1,9 @@
 class Game
+  attr_accessor :game_over
+
   attr_reader :board,
               :human_player,
-              :computer_player,
-              :game_over
+              :computer_player
 
   @@valid_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
@@ -22,15 +23,15 @@ class Game
   end
 
   def get_human_selection
-    print_request_selection
+    puts print_request_selection
     selection = gets.chomp
 
     until valid_letter?(selection) && open_column?(selection)
       if valid_letter?(selection) == false
-        return print_valid_letter_error #change to puts later?
+        puts print_valid_letter_error
         selection = gets.chomp
       elsif open_column?(selection) == false
-        return print_open_column_error #change to puts later?
+        puts print_open_column_error
         selection = gets.chomp
       end
     end

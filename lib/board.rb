@@ -18,18 +18,21 @@ class Board
     @grid = grid
   end
 
-  def print_board
-    puts format_board
-  end
+  # def print_board
+  #   puts format_board
+  # end
 
   def format_board
     formatted_board = @grid.values.transpose
     formatted_board.unshift(@grid.keys).map {|row| row.join}
   end
 
-  def update_board(player_selection, computer_selection)
+  def update_board_human(player_selection)
     @grid[player_selection][@grid[player_selection].rindex('.')] = 'X'
-    @grid[computer_selection][@grid[computer_selection].rindex('.')] = 'O'
+  end
+
+  def update_board_computer(player_selection)
+    @grid[player_selection][@grid[player_selection].rindex('.')] = 'O'
   end
 
   def check_for_end_game
