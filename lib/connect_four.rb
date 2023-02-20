@@ -51,4 +51,21 @@ class ConnectFour
       'Game is a draw!'
     end
   end
+
+  def start
+    puts show_welcome_message
+    puts show_main_menu
+    selection = gets.chomp
+
+    until selection == 'p' || selection == 'q'
+      puts 'Invalid choice. Type p or q to continue.'
+      selection = gets.chomp
+    end
+
+    if selection == 'p'
+      play
+    elsif selection == 'q'
+      puts show_goodbye_message
+    end
+  end
 end
