@@ -30,4 +30,8 @@ class ConnectFour
   def show_main_menu
     'Enter p to play or q to quit.'
   end
+
+  def show_play_again_message
+    'Thanks for playing! Want to play again?'
+  end
 end
