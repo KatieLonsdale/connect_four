@@ -22,4 +22,8 @@ class ConnectFour
     @board = Board.new
     @game = Game.new(@board, @human_player, @computer_player)
   end
+
+  def show_welcome_message
+    'Welcome to Connect Four!'
+  end
 end
