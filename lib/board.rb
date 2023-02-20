@@ -64,9 +64,7 @@ class Board
   end
 
   def check_for_draw
-    grid.values.each do |values|
-      return true if values.none?{|element| element == '.'}
-    end
+    grid.values.flatten.none?{|element| element == '.'}
   end
 
   def create_diagonals
