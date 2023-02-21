@@ -1,7 +1,8 @@
 class Board
+  attr_accessor :grid
+
   attr_reader :rows,
               :columns
-  attr_accessor :grid
 
   def initialize
     @rows = 6
@@ -23,9 +24,8 @@ class Board
     formatted_board.unshift(@grid.keys).map {|row| row.join}
   end
 
-  def update_board(player_selection, player_type)
-    player_type == :human ? piece = 'X' : piece = 'O'
-    @grid[player_selection][@grid[player_selection].rindex('.')] = piece
+  def update_board(player_selection, current_player)
+    @grid[player_selection][@grid[player_selection].rindex('.')] = current_player.piece
   end
 
   def check_for_end_game
