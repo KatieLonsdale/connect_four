@@ -1,4 +1,5 @@
 class ConnectFour
+  attr_accessor :current_player
   attr_reader :human_player,
               :computer_player,
               :board,
@@ -9,13 +10,19 @@ class ConnectFour
     @computer_player = nil
     @board = nil
     @game = nil
+    @current_player = nil
 
     create_players
+    set_current_player
   end
 
   def create_players
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
+  end
+
+  def set_current_player
+    @current_player == @human_player ? @current_player = @computer_player : @current_player = @human_player
   end
 
   def create_new_game
