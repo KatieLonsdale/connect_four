@@ -28,8 +28,7 @@ class Board
   end
 
   def update_board(player_selection, player_type)
-    piece = 'X' if player_type == :human
-    piece = 'O' if player_type == :computer
+    player_type == :human ? piece = 'X' : piece = 'O'
     @grid[player_selection][@grid[player_selection].rindex('.')] = piece
   end
 
