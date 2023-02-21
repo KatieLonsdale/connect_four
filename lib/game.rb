@@ -25,17 +25,15 @@ class Game
   def get_human_selection
     puts print_request_selection
     selection = gets.chomp.upcase
-
-    until valid_letter?(selection) && open_column?(selection)
-      if valid_letter?(selection) == false
-        puts print_valid_letter_error
-        selection = gets.chomp.upcase
-      elsif open_column?(selection) == false
-        puts print_open_column_error
-        selection = gets.chomp.upcase
-      end
+    if !valid_letter?(selection)
+      puts print_valid_letter_error
+      get_human_selection
+    elsif !open_column?(selection)
+      puts print_open_column_error
+      get_human_selection
+    else 
+      selection
     end
-    selection
   end
 
   def valid_letter?(selection)
@@ -55,6 +53,6 @@ class Game
   end
 
   def print_valid_letter_error
-    "Invalid selection. Please enter A, B, C, D, E, F, or G."
+    "Invalid selection."
   end
 end
