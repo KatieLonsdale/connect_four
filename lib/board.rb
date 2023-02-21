@@ -5,9 +5,9 @@ class Board
               :columns
 
   def initialize
+    @grid = make_grid
     @rows = 6
     @columns = 7
-    @grid = make_grid
   end
 
   def make_grid
