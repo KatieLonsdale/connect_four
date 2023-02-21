@@ -70,13 +70,13 @@ class ConnectFour
     puts @board.format_board
 
     until @game.game_over == true
-      @board.update_board_human(@game.get_human_selection)
+      @board.update_board(@game.get_human_selection, :human)
       puts @board.format_board
 
       puts turn_results(@board.check_for_end_game)
       break if @game.game_over == true
       puts "Computer - take your turn."
-      @board.update_board_computer(@game.get_computer_selection)
+      @board.update_board(@game.get_computer_selection, :computer)
       puts @board.format_board
 
       puts turn_results(@board.check_for_end_game)
