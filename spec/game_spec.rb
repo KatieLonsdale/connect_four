@@ -104,4 +104,22 @@ describe Game do
       expect(@game.open_column?('A')).to be false
     end
   end
+
+  describe '#print_request_selection' do
+    it 'returns a prompt to enter selection' do
+      expect(@game.print_request_selection).to eq("Select a column! Enter A, B, C, D, E, F, or G.")
+    end
+  end
+
+  describe '#print_open_column_error' do
+    it 'returns an error if column selected is full' do
+      expect(@game.print_open_column_error).to eq("Sorry, this column is full. Please try again.")
+    end
+  end
+
+  describe '#print_valid_letter_error' do
+    it 'returns an error if selection is invalid' do
+      expect(@game.print_valid_letter_error).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
+    end
+  end
 end
