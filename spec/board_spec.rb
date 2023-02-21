@@ -47,7 +47,7 @@ describe Board do
 
   describe '#update_board' do
     it 'changes grid to reflect board after human selections' do
-      @board.update_board('A')
+      @board.update_board('A', :human)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -57,7 +57,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('C')
+      @board.update_board('C', :human)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -67,7 +67,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update('D')
+      @board.update_board('D', :human)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -77,7 +77,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('A')
+      @board.update_board('A', :human)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", "X", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -89,7 +89,7 @@ describe Board do
     end
 
     it 'changes grid to reflect board after computer selections' do
-      @board.update_board('B')
+      @board.update_board('B', :computer)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -99,7 +99,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('E')
+      @board.update_board('E', :computer)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -109,7 +109,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('G')
+      @board.update_board('G', :computer)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -119,7 +119,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "O"]})
 
-      @board.update_board('B')
+      @board.update_board('B', :computer)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", "O", "O"],
