@@ -24,15 +24,15 @@ class Game
 
   def get_human_selection
     puts print_request_selection
-    selection = gets.chomp
+    selection = gets.chomp.upcase
 
     until valid_letter?(selection) && open_column?(selection)
       if valid_letter?(selection) == false
         puts print_valid_letter_error
-        selection = gets.chomp
+        selection = gets.chomp.upcase
       elsif open_column?(selection) == false
         puts print_open_column_error
-        selection = gets.chomp
+        selection = gets.chomp.upcase
       end
     end
     selection
@@ -46,15 +46,15 @@ class Game
     @board.grid[selection].include?(".")
   end
 
-  def print_request_selection #not currently tested - relies on terminal output
+  def print_request_selection
     "Select a column! Enter A, B, C, D, E, F, or G."
   end
 
-  def print_open_column_error #not currently tested - relies on terminal output
+  def print_open_column_error
     "Sorry, this column is full. Please try again."
   end
 
-  def print_valid_letter_error #not currently tested - relies on terminal output
+  def print_valid_letter_error
     "Invalid selection. Please enter A, B, C, D, E, F, or G."
   end
 end
