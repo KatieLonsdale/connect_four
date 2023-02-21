@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Board do
   before(:each) do
+    @connect_four = ConnectFour.new
     @board = Board.new
   end
   describe '#initialize' do
@@ -47,7 +48,7 @@ describe Board do
 
   describe '#update_board' do
     it 'changes grid to reflect board after human selections' do
-      @board.update_board('A', :human)
+      @board.update_board('A', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -57,7 +58,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('C', :human)
+      @board.update_board('C', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -67,7 +68,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('D', :human)
+      @board.update_board('D', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -77,7 +78,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('A', :human)
+      @board.update_board('A', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", "X", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -89,7 +90,8 @@ describe Board do
     end
 
     it 'changes grid to reflect board after computer selections' do
-      @board.update_board('B', :computer)
+      @connect_four.set_current_player
+      @board.update_board('B', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -99,7 +101,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('E', :computer)
+      @board.update_board('E', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -109,7 +111,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board('G', :computer)
+      @board.update_board('G', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", ".", "O"],
@@ -119,7 +121,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "O"]})
 
-      @board.update_board('B', :computer)
+      @board.update_board('B', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
       "B"=>[".", ".", ".", ".", "O", "O"],
