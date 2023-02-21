@@ -27,12 +27,10 @@ class Board
     formatted_board.unshift(@grid.keys).map {|row| row.join}
   end
 
-  def update_board_human(player_selection)
-    @grid[player_selection][@grid[player_selection].rindex('.')] = 'X'
-  end
-
-  def update_board_computer(player_selection)
-    @grid[player_selection][@grid[player_selection].rindex('.')] = 'O'
+  def update_board(player_selection, player_type)
+    piece = 'X' if player_type == :human
+    piece = 'O' if player_type == :computer
+    @grid[player_selection][@grid[player_selection].rindex('.')] = piece
   end
 
   def check_for_end_game
