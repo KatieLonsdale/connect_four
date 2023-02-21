@@ -5,6 +5,7 @@ describe Board do
     @connect_four = ConnectFour.new
     @board = Board.new
   end
+
   describe '#initialize' do
     it 'exists' do
       expect(@board).to be_a Board
@@ -226,15 +227,17 @@ end
   end
 
   describe '#check_for_win' do
-    it 'checks for human player win' do
-      no_win = [[".", ".", ".", ".", ".", "."],
+    before(:each) do
+      @no_win = [[".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."]]
+    end
 
+    it 'checks for human player win' do
       horizontal = [[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
@@ -263,23 +266,28 @@ end
       ["X", "O", ".", ".", "."],
       ["O", "X", ".", "."]]
 
-      expect(@board.check_for_win(vertical, no_win, no_win)).to be true
-      expect(@board.check_for_win(no_win, horizontal, no_win)).to be true
-      expect(@board.check_for_win(no_win, no_win, diagonal)).to be true
+      expect(@board.check_for_win(vertical, @no_win, @no_win)).to be true
+      expect(@board.check_for_win(@no_win, horizontal, @no_win)).to be true
+      expect(@board.check_for_win(@no_win, @no_win, diagonal)).to be true
     end
-    # add edge case test for if nothing is correct
+
+    it 'does nothing if no win is found' do
+      expect(@board.check_for_win(@no_win, @no_win, @no_win)).to_not be true
+    end
   end
 
   describe '#check_for_loss' do
-    it 'checks for computer player win' do
-      no_win = [[".", ".", ".", ".", ".", "."],
+    before(:each) do
+      @no_win = [[".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."]]
+    end
 
+    it 'checks for computer player win' do
       horizontal = [[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
@@ -308,9 +316,13 @@ end
       ["O", "X", ".", ".", "."],
       ["X", "O", ".", "."]]
 
-      expect(@board.check_for_loss(vertical, no_win, no_win)).to be true
-      expect(@board.check_for_loss(no_win, horizontal, no_win)).to be true
-      expect(@board.check_for_loss(no_win, no_win, diagonal)).to be true
+      expect(@board.check_for_loss(vertical, @no_win, @no_win)).to be true
+      expect(@board.check_for_loss(@no_win, horizontal, @no_win)).to be true
+      expect(@board.check_for_loss(@no_win, @no_win, diagonal)).to be true
+    end
+
+    it 'does nothing if no loss is found' do
+      expect(@board.check_for_win(@no_win, @no_win, @no_win)).to_not be true
     end
   end
 
