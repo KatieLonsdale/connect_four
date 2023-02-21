@@ -18,10 +18,6 @@ class Board
     @grid = grid
   end
 
-  # def print_board
-  #   puts format_board
-  # end
-
   def format_board
     formatted_board = @grid.values.transpose
     formatted_board.unshift(@grid.keys).map {|row| row.join}
