@@ -27,11 +27,41 @@ describe ConnectFour do
     it 'has a game that is nil by default' do
       expect(@connect_four.game).to eq(nil)
     end
+
+    it 'has a current player that starts as the human player' do
+      expect(@connect_four.current_player).to be_a Player
+      expect(@connect_four.current_player).to eq(@connect_four.human_player)
+    end
   end
 
   describe '#create_players' do
     it 'creates players' do
       expect(@connect_four.create_players).to be_a Player
+    end
+  end
+
+  describe '#set_current_player' do
+    it 'sets the current player to human at the start of the game' do
+      expect(@connect_four.current_player.type).to eq(:human)
+    end
+
+    it 'can change the current player to computer from human' do
+      expect(@connect_four.current_player.type).to eq(:human)
+
+      @connect_four.set_current_player
+
+      expect(@connect_four.current_player.type).to eq(:computer)
+      expect(@connect_four.current_player).to eq(@connect_four.computer_player)
+    end
+
+    it 'can change the current player back to human from computer' do
+      @connect_four.set_current_player
+      expect(@connect_four.current_player.type).to eq(:computer)
+
+      @connect_four.set_current_player
+
+      expect(@connect_four.current_player.type).to eq(:human)
+      expect(@connect_four.current_player).to eq(@connect_four.human_player)
     end
   end
 
