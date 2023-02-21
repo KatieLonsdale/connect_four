@@ -53,8 +53,6 @@ describe Game do
 
   describe '#get_human_selection' do
       let(:valid_input) {StringIO.new('B')} #letter is valid, column is open
-      # let(:invalid_input_1) {StringIO.new('X')} #letter is invalid
-      # let(:invalid_input_2) {StringIO.new('A')} #letter is valid, column is full
 
     it 'returns a valid column selection when input is valid' do
       $stdin = valid_input
@@ -64,20 +62,6 @@ describe Game do
       expect(@valid_columns).to include(human_selection)
       $stdin = STDIN
     end
-
-    #will need to remove (or modify) this test once we are not early-returning the error
-    # it 'displays error message if first selection is not a valid letter' do
-    #   $stdin = invalid_input_1
-    #   expect(@game.get_human_selection).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
-    #   $stdin = STDIN
-    # end
-
-    #will need to remove (or modify) this test once we are not early-returning the error
-    # it 'displays error message if first selected column is full' do
-    #   $stdin = invalid_input_2
-    #   expect(@game.get_human_selection).to eq("Sorry, this column is full. Please try again.")
-    #   $stdin = STDIN
-    # end
   end
 
   describe '#valid_letter?' do
@@ -119,7 +103,7 @@ describe Game do
 
   describe '#print_valid_letter_error' do
     it 'returns an error if selection is invalid' do
-      expect(@game.print_valid_letter_error).to eq("Invalid selection. Please enter A, B, C, D, E, F, or G.")
+      expect(@game.print_valid_letter_error).to eq("Invalid selection.")
     end
   end
 end
