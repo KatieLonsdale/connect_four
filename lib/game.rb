@@ -5,7 +5,7 @@ class Game
               :human_player,
               :computer_player
 
-  @@valid_columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+  VALID_COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
   def initialize(board, human_player, computer_player)
     @board = board
@@ -16,9 +16,9 @@ class Game
 
   def get_computer_selection
     puts "Computer - take your turn."
-    selection = @@valid_columns.sample
+    selection = VALID_COLUMNS.sample
     until open_column?(selection)
-      selection = @@valid_columns.sample
+      selection = VALID_COLUMNS.sample
     end
     selection
   end
@@ -38,7 +38,7 @@ class Game
   end
 
   def valid_letter?(selection)
-    @@valid_columns.include?(selection)
+   VALID_COLUMNS.include?(selection)
   end
 
   def open_column?(selection)
