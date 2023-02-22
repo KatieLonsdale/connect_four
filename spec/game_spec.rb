@@ -40,23 +40,20 @@ describe Game do
   end
 
   describe '#get_computer_selection' do
-    before(:each) do
-      @computer_selection = @game.get_computer_selection
-    end
-
     it 'returns a valid column selection' do
-      expect(@computer_selection).to be_a String
-      expect(@computer_selection.length).to eq(1)
-      expect(@valid_columns).to include(@computer_selection)
+      computer_selection = @game.get_computer_selection
+      expect(computer_selection).to be_a String
+      expect(computer_selection.length).to eq(1)
+      expect(@valid_columns).to include(computer_selection)
     end
   end
 
   describe '#get_human_selection' do
-      let(:valid_input) {StringIO.new('B')} #letter is valid, column is open
+      let(:valid_input) {StringIO.new('B')}
 
     it 'returns a valid column selection when input is valid' do
       $stdin = valid_input
-      human_selection = @game.get_computer_selection
+      human_selection = @game.get_human_selection
       expect(human_selection).to be_a String
       expect(human_selection.length).to eq(1)
       expect(@valid_columns).to include(human_selection)

@@ -62,25 +62,29 @@ class ConnectFour
 
   def start
     puts show_welcome_message
+    sleep(0.5)
     puts show_main_menu
     play_or_quit
   end
 
   def play
     create_new_game
+    set_current_player if current_player.is_computer?
+    sleep(0.5)
     puts @board.format_board
+    sleep(0.5)
 
     until @game.game_over == true
-      @board.update_board(@game.get_human_selection, @current_player)
-      puts @board.format_board
+      case current_player.type
+      when :human
+        @board.update_board(@game.get_human_selection, @current_player)
+      when :computer
+        @board.update_board(@game.get_computer_selection, @current_player)
+      end
 
-      puts turn_results(@board.check_for_end_game)
-      break if @game.game_over == true
-      puts "Computer - take your turn."
-      set_current_player
-      @board.update_board(@game.get_computer_selection, @current_player)
+      sleep(1)
       puts @board.format_board
-
+      sleep(0.5)
       puts turn_results(@board.check_for_end_game)
       set_current_player
     end
