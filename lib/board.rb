@@ -32,10 +32,15 @@ class Board
     vertical = @grid.values
     horizontal = @grid.values.transpose
     diagonal = create_diagonals
-    result = :keep_playing
-    result = :win if check_for_win(vertical, horizontal, diagonal) == true
-    result = :loss if check_for_loss(vertical, horizontal, diagonal) == true
-    result = :draw if check_for_draw == true
+    if check_for_win(vertical, horizontal, diagonal) == true
+      result = :win 
+    elsif check_for_loss(vertical, horizontal, diagonal) == true
+      result = :loss 
+    elsif check_for_draw == true
+      result = :draw 
+    else
+      result = :keep_playing
+    end
     result
   end
 
