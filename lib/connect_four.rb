@@ -62,6 +62,7 @@ class ConnectFour
 
   def start
     puts show_welcome_message
+    sleep(0.5)
     puts show_main_menu
     play_or_quit
   end
@@ -69,7 +70,9 @@ class ConnectFour
   def play
     create_new_game
     set_current_player if current_player.is_computer?
+    sleep(0.5)
     puts @board.format_board
+    sleep(0.5)
 
     until @game.game_over == true
       case current_player.type
@@ -79,7 +82,9 @@ class ConnectFour
         @board.update_board(@game.get_computer_selection, @current_player)
       end
 
+      sleep(1)
       puts @board.format_board
+      sleep(0.5)
       puts turn_results(@board.check_for_end_game)
       set_current_player
     end
