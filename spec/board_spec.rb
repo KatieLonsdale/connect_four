@@ -188,7 +188,7 @@ end
       expect(@board.check_for_end_game).to eq(:draw)
     end
 
-    it 'does nothing if no end game condition is met' do
+    it 'returns :keep_playing if no end game condition is met' do
       @board.grid = {
       "A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", "O", "O", "X", "O"],
@@ -200,6 +200,29 @@ end
 
       expect(@board.check_for_end_game).to eq(:keep_playing)
     end
+
+    it 'returns :win if user wins two directions' do
+      @board.grid = {
+      "A"=>[".", ".", ".", ".", ".", "X"],
+      "B"=>[".", ".", ".", ".", "X", "O"],
+      "C"=>[".", ".", ".", "X", "O", "O"],
+      "D"=>[".", ".", "X", "X", "X", "X"],
+      "E"=>[".", ".", ".", ".", ".", "."],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "X"]}
+    end
+
+    it 'returns :loss if computer wins two directions' do
+      @board.grid = {
+      "A"=>[".", ".", ".", ".", ".", "O"],
+      "B"=>[".", ".", ".", ".", "O", "X"],
+      "C"=>[".", ".", ".", "O", "X", "X"],
+      "D"=>[".", ".", "O", "O", "O", "O"],
+      "E"=>[".", ".", ".", ".", ".", "."],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "X"]}
+    end
+
   end
 
   describe '#check_for_win' do
