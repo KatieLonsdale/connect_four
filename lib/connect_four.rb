@@ -82,7 +82,7 @@ class ConnectFour
         @board.update_board(@game.get_computer_selection, @current_player)
       end
 
-      sleep(1)
+      sleep(0.7)
       puts @board.format_board
       sleep(0.5)
       puts turn_results(@board.check_for_end_game)
