@@ -40,7 +40,7 @@ describe Game do
   end
 
   describe '#get_computer_selection' do
-    xit 'returns a valid column selection' do
+    it 'returns a valid column selection' do
       computer_selection = @game.get_computer_selection
       expect(computer_selection).to be_a String
       expect(computer_selection.length).to eq(1)
@@ -51,7 +51,7 @@ describe Game do
   describe '#get_human_selection' do
       let(:valid_input) {StringIO.new('B')}
 
-    xit 'returns a valid column selection when input is valid' do
+    it 'returns a valid column selection when input is valid' do
       $stdin = valid_input
       human_selection = @game.get_human_selection
       expect(human_selection).to be_a String
