@@ -1,4 +1,6 @@
 class ConnectFour
+  attr_accessor :current_player
+
   attr_reader :human_player,
               :computer_player,
               :board,
@@ -9,13 +11,19 @@ class ConnectFour
     @computer_player = nil
     @board = nil
     @game = nil
+    @current_player = nil
 
     create_players
+    set_current_player
   end
 
   def create_players
     @human_player = Player.new(:human)
     @computer_player = Player.new(:computer)
+  end
+
+  def set_current_player
+    @current_player == @human_player ? @current_player = @computer_player : @current_player = @human_player
   end
 
   def create_new_game
@@ -63,16 +71,18 @@ class ConnectFour
     puts @board.format_board
 
     until @game.game_over == true
-      @board.update_board_human(@game.get_human_selection)
+      @board.update_board(@game.get_human_selection, @current_player)
       puts @board.format_board
 
       puts turn_results(@board.check_for_end_game)
       break if @game.game_over == true
       puts "Computer - take your turn."
-      @board.update_board_computer(@game.get_computer_selection)
+      set_current_player
+      @board.update_board(@game.get_computer_selection, @current_player)
       puts @board.format_board
 
       puts turn_results(@board.check_for_end_game)
+      set_current_player
     end
 
     puts show_play_again_message
@@ -81,11 +91,11 @@ class ConnectFour
   end
 
   def play_or_quit
-    selection = gets.chomp
+    selection = gets.chomp.downcase
 
     until selection == 'p' || selection == 'q'
       puts 'Invalid choice. Type p or q to continue.'
-      selection = gets.chomp
+      selection = gets.chomp.downcase
     end
 
     if selection == 'p'

@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe Board do
   before(:each) do
+    @connect_four = ConnectFour.new
     @board = Board.new
   end
+
   describe '#initialize' do
     it 'exists' do
       expect(@board).to be_a Board
@@ -45,9 +47,9 @@ describe Board do
     end
   end
 
-  describe '#update_board_human' do
-    it 'changes grid to reflect board after human selection' do
-      @board.update_board_human('A')
+  describe '#update_board' do
+    it 'changes grid to reflect board after human selections' do
+      @board.update_board('A', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -57,7 +59,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board_human('C')
+      @board.update_board('C', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -67,7 +69,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board_human('D')
+      @board.update_board('D', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -77,7 +79,7 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
 
-      @board.update_board_human('A')
+      @board.update_board('A', @connect_four.current_player)
 
       expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", "X", "X"],
       "B"=>[".", ".", ".", ".", ".", "."],
@@ -87,50 +89,49 @@ describe Board do
       "F"=>[".", ".", ".", ".", ".", "."],
       "G"=>[".", ".", ".", ".", ".", "."]})
     end
-  end
 
-  describe '#update_board_computer' do
-  it 'changes grid to reflect board after computer selections' do
-    @board.update_board_computer('B')
+    it 'changes grid to reflect board after computer selections' do
+      @connect_four.set_current_player
+      @board.update_board('B', @connect_four.current_player)
 
-    expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
-    "B"=>[".", ".", ".", ".", ".", "O"],
-    "C"=>[".", ".", ".", ".", ".", "."],
-    "D"=>[".", ".", ".", ".", ".", "."],
-    "E"=>[".", ".", ".", ".", ".", "."],
-    "F"=>[".", ".", ".", ".", ".", "."],
-    "G"=>[".", ".", ".", ".", ".", "."]})
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "."],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "."],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "."]})
 
-    @board.update_board_computer('E')
+      @board.update_board('E', @connect_four.current_player)
 
-    expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
-    "B"=>[".", ".", ".", ".", ".", "O"],
-    "C"=>[".", ".", ".", ".", ".", "."],
-    "D"=>[".", ".", ".", ".", ".", "."],
-    "E"=>[".", ".", ".", ".", ".", "O"],
-    "F"=>[".", ".", ".", ".", ".", "."],
-    "G"=>[".", ".", ".", ".", ".", "."]})
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "."],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "."]})
 
-    @board.update_board_computer('G')
+      @board.update_board('G', @connect_four.current_player)
 
-    expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
-    "B"=>[".", ".", ".", ".", ".", "O"],
-    "C"=>[".", ".", ".", ".", ".", "."],
-    "D"=>[".", ".", ".", ".", ".", "."],
-    "E"=>[".", ".", ".", ".", ".", "O"],
-    "F"=>[".", ".", ".", ".", ".", "."],
-    "G"=>[".", ".", ".", ".", ".", "O"]})
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
+      "B"=>[".", ".", ".", ".", ".", "O"],
+      "C"=>[".", ".", ".", ".", ".", "."],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "O"]})
 
-    @board.update_board_computer('B')
+      @board.update_board('B', @connect_four.current_player)
 
-    expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
-    "B"=>[".", ".", ".", ".", "O", "O"],
-    "C"=>[".", ".", ".", ".", ".", "."],
-    "D"=>[".", ".", ".", ".", ".", "."],
-    "E"=>[".", ".", ".", ".", ".", "O"],
-    "F"=>[".", ".", ".", ".", ".", "."],
-    "G"=>[".", ".", ".", ".", ".", "O"]})
-  end
+      expect(@board.grid).to eq({"A"=>[".", ".", ".", ".", ".", "."],
+      "B"=>[".", ".", ".", ".", "O", "O"],
+      "C"=>[".", ".", ".", ".", ".", "."],
+      "D"=>[".", ".", ".", ".", ".", "."],
+      "E"=>[".", ".", ".", ".", ".", "O"],
+      "F"=>[".", ".", ".", ".", ".", "."],
+      "G"=>[".", ".", ".", ".", ".", "O"]})
+    end
 end
 
   describe '#check_for_end_game' do
@@ -226,15 +227,17 @@ end
   end
 
   describe '#check_for_win' do
-    it 'checks for human player win' do
-      no_win = [[".", ".", ".", ".", ".", "."],
+    before(:each) do
+      @no_win = [[".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."]]
+    end
 
+    it 'checks for human player win' do
       horizontal = [[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
@@ -263,23 +266,28 @@ end
       ["X", "O", ".", ".", "."],
       ["O", "X", ".", "."]]
 
-      expect(@board.check_for_win(vertical, no_win, no_win)).to be true
-      expect(@board.check_for_win(no_win, horizontal, no_win)).to be true
-      expect(@board.check_for_win(no_win, no_win, diagonal)).to be true
+      expect(@board.check_for_win(vertical, @no_win, @no_win)).to be true
+      expect(@board.check_for_win(@no_win, horizontal, @no_win)).to be true
+      expect(@board.check_for_win(@no_win, @no_win, diagonal)).to be true
     end
-    # add edge case test for if nothing is correct
+
+    it 'does nothing if no win is found' do
+      expect(@board.check_for_win(@no_win, @no_win, @no_win)).to_not be true
+    end
   end
 
   describe '#check_for_loss' do
-    it 'checks for computer player win' do
-      no_win = [[".", ".", ".", ".", ".", "."],
+    before(:each) do
+      @no_win = [[".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", "."]]
+    end
 
+    it 'checks for computer player win' do
       horizontal = [[".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
       [".", ".", ".", ".", ".", ".", "."],
@@ -308,9 +316,13 @@ end
       ["O", "X", ".", ".", "."],
       ["X", "O", ".", "."]]
 
-      expect(@board.check_for_loss(vertical, no_win, no_win)).to be true
-      expect(@board.check_for_loss(no_win, horizontal, no_win)).to be true
-      expect(@board.check_for_loss(no_win, no_win, diagonal)).to be true
+      expect(@board.check_for_loss(vertical, @no_win, @no_win)).to be true
+      expect(@board.check_for_loss(@no_win, horizontal, @no_win)).to be true
+      expect(@board.check_for_loss(@no_win, @no_win, diagonal)).to be true
+    end
+
+    it 'does nothing if no loss is found' do
+      expect(@board.check_for_win(@no_win, @no_win, @no_win)).to_not be true
     end
   end
 
