@@ -49,12 +49,13 @@ describe Game do
   end
 
   describe '#get_human_selection' do
-      let(:valid_input) {StringIO.new('B')}
-
     it 'returns a valid column selection when input is valid' do
+      valid_input = StringIO.new('B')
       $stdin = valid_input
+
       human_selection = @game.get_human_selection
       expect(human_selection).to be_a String
+      expect(human_selection).to eq('B')
       expect(human_selection.length).to eq(1)
       expect(@valid_columns).to include(human_selection)
       $stdin = STDIN
