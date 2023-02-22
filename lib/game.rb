@@ -15,6 +15,7 @@ class Game
   end
 
   def get_computer_selection
+    puts "Computer - take your turn."
     selection = @@valid_columns.sample
     until open_column?(selection)
       selection = @@valid_columns.sample
@@ -31,7 +32,7 @@ class Game
     elsif !open_column?(selection)
       puts print_open_column_error
       get_human_selection
-    else 
+    else
       selection
     end
   end
