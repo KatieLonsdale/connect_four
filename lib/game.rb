@@ -38,7 +38,7 @@ class Game
   end
 
   def valid_letter?(selection)
-   VALID_COLUMNS.include?(selection)
+    VALID_COLUMNS.include?(selection)
   end
 
   def open_column?(selection)
