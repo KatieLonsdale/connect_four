@@ -32,11 +32,11 @@ class ConnectFour
   end
 
   def show_welcome_message
-    'Welcome to Connect Four!'
+    "<html>Welcome to Connect Four!</html>"
   end
 
   def show_main_menu
-    'Enter p to play or q to quit.'
+    "<html> Enter p to play or q to quit.</html>"
   end
 
   def show_play_again_message
@@ -60,10 +60,11 @@ class ConnectFour
     end
   end
 
-  def start
-    puts show_welcome_message
-    sleep(0.5)
-    puts show_main_menu
+  def start(connection)
+    status = "http/1.1 200 ok"
+    response = status + "\r\n" + "\r\n" + show_welcome_message + show_main_menu
+    connection.puts response
+    # response = status + "\r\n" + "\r\n" + show_main_menu
     play_or_quit
   end
 
