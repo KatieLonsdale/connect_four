@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :game_over
+  attr_accessor :game_over, :server
 
   attr_reader :board,
               :human_player,
@@ -7,31 +7,53 @@ class Game
 
   VALID_COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
-  def initialize(board, human_player, computer_player)
+  def initialize(board, human_player, computer_player, server)
     @board = board
     @human_player = human_player
     @computer_player = computer_player
     @game_over = false
+    @server = server
   end
 
-  def get_computer_selection
-    puts "Computer - take your turn."
+  def get_computer_selection(connection)
     selection = VALID_COLUMNS.sample
     until open_column?(selection)
       selection = VALID_COLUMNS.sample
     end
+
+    computer_choice = "<html>The computer chose #{selection}.<br></html>"
+    status = "http/1.1 200 ok"
+    response = "\r\n" + "\r\n" + computer_choice
+    connection.puts response
+
     selection
   end
 
-  def get_human_selection
-    puts print_request_selection
-    selection = gets.chomp.upcase
+  def get_human_selection(connection)
+    request_selection = "<html>#{print_request_selection}<br></html>"
+    status = "http/1.1 200 ok"
+    response = "\r\n" + "\r\n" + request_selection
+    connection.puts response
+
+    connection = @server.accept
+
+    selection = parse_selection(connection).to_s
     if !valid_letter?(selection)
-      puts print_valid_letter_error
-      get_human_selection
+      valid_letter_error = "<html>#{print_valid_letter_error}<br></html>"
+      status = "http/1.1 200 ok"
+      response = status + "\r\n" + "\r\n" + valid_letter_error
+      connection.puts response
+
+      connection = @server.accept
+      get_human_selection(connection)
     elsif !open_column?(selection)
-      puts print_open_column_error
-      get_human_selection
+      open_column_error = "<html>#{print_open_column_error}<br></html>"
+      status = "http/1.1 200 ok"
+      response = status + "\r\n" + "\r\n" + open_column_error
+      connection.puts response
+
+      connection = @server.accept
+      get_human_selection(connection)
     else
       selection
     end
@@ -55,5 +77,22 @@ class Game
 
   def print_valid_letter_error
     "Invalid selection."
+  end
+
+  def parse_selection(connection)
+    request_lines = []
+    line = connection.gets.chomp
+    while !line.empty?
+      request_lines << line
+      line = connection.gets.chomp
+    end
+
+    request_line = request_lines[0]
+    if request_line.include? '?'
+      path = request_line.split[1]
+      params = path.split("selection=")
+      selection = params[-1]
+    end
+    selection
   end
 end

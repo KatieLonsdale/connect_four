@@ -20,8 +20,31 @@ class Board
   end
 
   def format_board
-    formatted_board = @grid.values.transpose
-    formatted_board.unshift(@grid.keys).map {|row| row.join}
+    board = @grid.values.transpose.unshift(@grid.keys)
+    formatted =
+    "<table>
+    <tr>
+    #{board[0].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[1].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[2].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[3].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[4].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[5].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    <tr>
+    #{board[6].map{|dot| '<td>' + dot + '</td>'}.join()}
+    </tr>
+    </table>"
   end
 
   def update_board(player_selection, current_player)
@@ -33,11 +56,11 @@ class Board
     horizontal = @grid.values.transpose
     diagonal = create_diagonals
     if check_for_win(vertical, horizontal, diagonal) == true
-      result = :win 
+      result = :win
     elsif check_for_loss(vertical, horizontal, diagonal) == true
-      result = :loss 
+      result = :loss
     elsif check_for_draw == true
-      result = :draw 
+      result = :draw
     else
       result = :keep_playing
     end
