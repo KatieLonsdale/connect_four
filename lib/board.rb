@@ -22,6 +22,32 @@ class Board
   def format_board
     formatted_board = @grid.values.transpose
     formatted_board.unshift(@grid.keys).map {|row| row.join}
+
+    "<html>
+      <table>
+        <tr>
+          <td>#{@grid.keys}</td>
+        </tr>
+        <tr>
+          <td>#{formatted_board[1]}</td>
+        </tr>
+        <tr>
+          <td>#{formatted_board[2]}</td>
+        </tr>
+        <tr>
+          <td>#{formatted_board[3]}</td>
+        </tr>
+        <tr>
+          <td>#{formatted_board[4]}</td>
+        </tr>
+        <tr>
+          <td>#{formatted_board[5]}</td>
+        </tr>
+        <tr>
+        <td>#{formatted_board[6]}</td>
+      </tr>
+      <table>
+    </html>"
   end
 
   def update_board(player_selection, current_player)

@@ -5,9 +5,9 @@ server = TCPServer.new(9292)
 puts 'waiting for request'
 connection = server.accept
 
-connect_four = ConnectFour.new
-puts 'sending request'
-connect_four.start(connection)
+connect_four = ConnectFour.new(connection, server)
+connect_four.start
+# connect_four.play_or_quit
 
 loop
   puts 'waiting for request'
@@ -15,7 +15,6 @@ loop
 
   puts "Got this Request:"
   request_lines = []
-  require 'pry'; binding.pry
   line = connection.gets.chomp
   while !line.empty?
     request_lines << line
