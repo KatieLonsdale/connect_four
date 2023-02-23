@@ -20,12 +20,12 @@ class Board
   end
 
   def format_board
-    formatted_board = @grid.values.transpose
-    formatted_board.unshift(@grid.keys).map {|row| row.join}
+    @grid.values.transpose.unshift(@grid.keys).map {|row| row.join}
   end
 
   def update_board(player_selection, current_player)
-    @grid[player_selection][@grid[player_selection].rindex('.')] = current_player.piece
+    @grid[player_selection][@grid[player_selection].
+    rindex('.')] = current_player.piece
   end
 
   def check_for_end_game
