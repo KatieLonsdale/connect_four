@@ -17,10 +17,6 @@ describe Board do
       expect(@board.grid.values.count).to eq(7)
     end
 
-    it 'board is blank by default' do
-      expect(@board.grid.values.sample).to eq([".", ".", ".", ".", ".", "."])
-    end
-
     it 'has a row count of 6 by default' do
       expect(@board.rows).to eq(6)
     end
@@ -32,8 +28,13 @@ describe Board do
 
   describe '#make_grid' do
     it 'has 6 subarrays of 7 elements each by default' do
-      expect(@board.grid.values.sample.count).to eq(@board.rows)
-      expect(@board.grid.keys.count).to eq(@board.columns)
+      expect(@board.make_grid.values.sample.count).to eq(@board.rows)
+      expect(@board.make_grid.keys.count).to eq(@board.columns)
+    end
+
+    it 'board is blank by default' do
+      expect(@board.make_grid.values.flatten.
+      all?{|element| element == '.'}).to be true
     end
   end
 
@@ -332,7 +333,7 @@ end
     end
 
     it 'does nothing if no loss is found' do
-      expect(@board.check_for_win(@no_win, @no_win, @no_win)).to_not be true
+      expect(@board.check_for_loss(@no_win, @no_win, @no_win)).to_not be true
     end
   end
 
