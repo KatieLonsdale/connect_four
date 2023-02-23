@@ -23,7 +23,11 @@ class ConnectFour
   end
 
   def set_current_player
-    @current_player == @human_player ? @current_player = @computer_player : @current_player = @human_player
+    if @current_player == @human_player
+      @current_player = @computer_player
+    else
+      @current_player = @human_player
+    end
   end
 
   def create_new_game
