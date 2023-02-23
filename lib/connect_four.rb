@@ -48,14 +48,12 @@ class ConnectFour
   end
 
   def turn_results(result)
+    @game.game_over = true unless result == :keep_playing
     if result == :win
-      @game.game_over = true
       'You win!'
     elsif result == :loss
-      @game.game_over = true
       'You lose!'
     elsif result == :draw
-      @game.game_over = true
       'Game is a draw!'
     end
   end
