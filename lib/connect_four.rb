@@ -23,7 +23,11 @@ class ConnectFour
   end
 
   def set_current_player
-    @current_player == @human_player ? @current_player = @computer_player : @current_player = @human_player
+    if @current_player == @human_player
+      @current_player = @computer_player
+    else
+      @current_player = @human_player
+    end
   end
 
   def create_new_game
@@ -48,14 +52,12 @@ class ConnectFour
   end
 
   def turn_results(result)
+    @game.game_over = true unless result == :keep_playing
     if result == :win
-      @game.game_over = true
       'You win!'
     elsif result == :loss
-      @game.game_over = true
       'You lose!'
     elsif result == :draw
-      @game.game_over = true
       'Game is a draw!'
     end
   end

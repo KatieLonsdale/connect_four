@@ -5,6 +5,7 @@ describe Player do
     @player = Player.new(:human)
     @player_2 = Player.new(:computer)
   end
+  
   describe '#initialize' do
     it 'exists' do
       expect(@player).to be_a Player
